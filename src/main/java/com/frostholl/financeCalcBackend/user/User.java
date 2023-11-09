@@ -2,6 +2,7 @@ package com.frostholl.financeCalcBackend.user;
 
 import com.frostholl.financeCalcBackend.userRole.Role;
 import com.frostholl.financeCalcBackend.userRole.UserRoles;
+import com.frostholl.financeCalcBackend.userRole.UserRolesService;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

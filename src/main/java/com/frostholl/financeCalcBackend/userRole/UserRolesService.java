@@ -14,11 +14,16 @@ public class UserRolesService {
         this.userRolesRepository = userRolesRepository;
     }
 
-    public Set<Role> getUserRolesByUser(User user) {
+    public Set<Role> getRolesByUser(User user) {
         Optional<UserRoles> roles = userRolesRepository.findUserRolesByID(user.getId());
         if (roles.isPresent())
             return roles.get().getRoles();
         return null;
+    }
+
+    public UserRoles getUserRolesByUser(User user) {
+        Optional<UserRoles> roles = userRolesRepository.findUserRolesByID(user.getId());
+        return roles.orElse(null);
     }
 
     public void setUserRolesByUser(User user, Set<Role> roles) {

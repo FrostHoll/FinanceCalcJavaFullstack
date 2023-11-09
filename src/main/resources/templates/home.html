@@ -5,8 +5,23 @@
     <title>Домашняя страница</title>
 </head>
 <body>
-<p>Добро пожаловать!</p>
-
+<div>
+    <p>Добро пожаловать, <em th:text="${username}">...</em>! </p>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Категория</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category: ${categories}">
+        <td th:utext="${category.getId()}">...</td>
+        <td th:utext="${category.getDescription()}">...</td>
+    </tr>
+    </tbody>
+</table>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>
 </form>

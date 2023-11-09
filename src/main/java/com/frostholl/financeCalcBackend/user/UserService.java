@@ -19,12 +19,9 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    private final UserRolesService userRolesService;
 
-
-    public UserService(UserRepository userRepository, UserRolesService service) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userRolesService = service;
     }
 
     public List<User> getUsers() {
@@ -44,8 +41,12 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public Set<Role> getUserRoles (User user) {
-        return userRolesService.getUserRolesByUser(user);
+    public void updateUser(User user) {
+        Optional<User> userOptional = userRepository.findById(user.getId());
+        if (userOptional.isPresent()) {
+            userRepository.save(user);
+        }
+        else throw new IllegalStateException("User " + user.getLogin() + " does not exist!");
     }
 
     @Override
