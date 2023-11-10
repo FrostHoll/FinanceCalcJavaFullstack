@@ -5,8 +5,10 @@
     <title>Домашняя страница</title>
 </head>
 <body>
+<a href="/user/all">Список пользователей</a>
 <div>
-    <p>Добро пожаловать, <em th:text="${username}">...</em>! </p>
+    <p>Добро пожаловать, <span th:text="${username}">...</span>!</p>
+    <a href="/user/edit">Редактировать профиль</a>
 </div>
 <table>
     <thead>

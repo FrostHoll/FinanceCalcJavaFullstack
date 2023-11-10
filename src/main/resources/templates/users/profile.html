@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование профиля</title>
+</head>
+<body>
+<h3>Редактирование профиля</h3>
+<form th:action="@{/user/edit}" method="post">
+    <div>
+        <label>Логин: <input type="text" th:value="${user.getLogin()}" name="login"></label>
+    </div>
+    <div>
+        <label>Фамилия: <input type="text" th:value="${user.getUser_surname()}" name="user_surname"></label>
+    </div>
+    <div>
+        <label>Имя: <input type="text" th:value="${user.getUser_name()}" name="user_name"></label>
+    </div>
+    <input type="submit" value="Сохранить">
+</form>
+</body>
+</html>
