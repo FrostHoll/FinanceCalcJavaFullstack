@@ -1,4 +1,4 @@
-package com.frostholl.financeCalcBackend.Category;
+package com.frostholl.financeCalcBackend.category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

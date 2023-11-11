@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>История</title>
+</head>
+<body>
+<h3>История</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Сумма</th>
+        <th>Описание</th>
+        <th>Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="rec: ${records}">
+        <td th:utext="${rec.getAmount()}">...</td>
+        <td th:utext="${rec.getDescription()}">...</td>
+        <td th:utext="${rec.getRecord_date()}">...</td>
+    </tr>
+    </tbody>
+</table>
+<a href="/home">Добавить запись</a>
+</body>
+</html>

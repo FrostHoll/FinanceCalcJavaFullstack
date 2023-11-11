@@ -1,4 +1,4 @@
-package com.frostholl.financeCalcBackend.Category;
+package com.frostholl.financeCalcBackend.category;
 
 import jakarta.persistence.*;
 

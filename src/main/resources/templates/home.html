@@ -10,20 +10,9 @@
     <p>Добро пожаловать, <span th:text="${username}">...</span>!</p>
     <a href="/user/edit">Редактировать профиль</a>
 </div>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Категория</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="category: ${categories}">
-        <td th:utext="${category.getId()}">...</td>
-        <td th:utext="${category.getDescription()}">...</td>
-    </tr>
-    </tbody>
-</table>
+<div>
+    <a href="/history">История</a>
+</div>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>
 </form>
