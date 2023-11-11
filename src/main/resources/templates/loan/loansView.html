@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Кредиты</title>
+</head>
+<body>
+<h3>Кредиты</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Описание</th>
+        <th>Сумма кредита</th>
+        <th>Годовая ставка</th>
+        <th>Аннуитетный платеж</th>
+        <th>Открыт</th>
+        <th>Выплачено</th>
+        <th>Сумма на текущий период</th>
+        <th>Последняя выплата</th>
+        <th>Ожидаемая дата закрытия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="l: ${loans}">
+        <td th:utext="${l.getDescription()}">...</td>
+        <td th:utext="${{l.getLoanAmount()}}">...</td>
+        <td th:utext="${{l.getInterestRate()}}">...</td>
+        <td th:utext="#{|bool.${l.isAnnuity()}|}">...</td>
+        <td th:utext="${{l.getDateBegin()}}">...</td>
+        <td th:utext="${{l.getBalance()}}">...</td>
+        <td th:utext="${{l.getCurrentPayment()}}">...</td>
+        <td th:utext="${{l.getDateLastPay()}}">...</td>
+        <td th:utext="${{l.getDateEnd()}}">...</td>
+    </tr>
+    </tbody>
+</table>
+<a href="/home">Добавить кредит</a>
+</body>
+</html>

@@ -19,4 +19,8 @@ public class RecordService {
         Optional<List<Record>> records = recordRepository.findByUserId(user.getId());
         return records.orElse(null);
     }
+
+    public void addNewRecord(Record record) {
+        recordRepository.save(record);
+    }
 }

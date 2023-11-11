@@ -5,13 +5,12 @@
     <title>Домашняя страница</title>
 </head>
 <body>
-<a href="/user/all">Список пользователей</a>
+<nav>
+    <a href="/history">История</a> | <a href="/loans">Кредиты</a> | <a href="/user/all">Список пользователей</a>
+</nav>
 <div>
     <p>Добро пожаловать, <span th:text="${username}">...</span>!</p>
     <a href="/user/edit">Редактировать профиль</a>
-</div>
-<div>
-    <a href="/history">История</a>
 </div>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>

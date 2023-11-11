@@ -11,17 +11,19 @@
     <tr>
         <th>Сумма</th>
         <th>Описание</th>
+        <th>Тип</th>
         <th>Дата</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="rec: ${records}">
-        <td th:utext="${rec.getAmount()}">...</td>
-        <td th:utext="${rec.getDescription()}">...</td>
-        <td th:utext="${rec.getRecord_date()}">...</td>
+        <td th:utext="${{rec.getAmount()}}">...</td>
+        <td th:utext="${{rec.getDescription()}}">...</td>
+        <td th:utext="#{${'record.type.' + rec.getRecordType()}}">...</td>
+        <td th:utext="${{rec.getRecord_date()}}">...</td>
     </tr>
     </tbody>
 </table>
-<a href="/home">Добавить запись</a>
+<a href="/history/add">Добавить запись</a>
 </body>
 </html>
