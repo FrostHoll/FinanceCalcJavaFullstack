@@ -5,6 +5,10 @@
     <title>История</title>
 </head>
 <body>
+<form action="#" th:action="@{/home}" method="get">
+    <button>Назад</button>
+</form>
+
 <h3>История</h3>
 <p th:if="${records.isEmpty()}">Нет истории</p>
 <table th:unless="${records.isEmpty()}">

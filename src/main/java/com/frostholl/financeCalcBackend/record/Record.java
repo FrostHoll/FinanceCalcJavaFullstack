@@ -1,6 +1,7 @@
 package com.frostholl.financeCalcBackend.record;
 
 import com.frostholl.financeCalcBackend.category.Category;
+import com.frostholl.financeCalcBackend.goal.Goal;
 import com.frostholl.financeCalcBackend.loan.Loan;
 import com.frostholl.financeCalcBackend.user.User;
 import jakarta.persistence.*;
@@ -35,6 +36,10 @@ public class Record {
     @JoinColumn(name = "loan_id")
     private Loan loan;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "goal_id")
+    private Goal goal;
+
     @Column(name = "record_date")
     private LocalDateTime recordDate;
 
@@ -46,12 +51,14 @@ public class Record {
                   String description,
                   Category category,
                   Loan loan,
+                  Goal goal,
                   LocalDateTime recordDate) {
         this.user = user;
         this.amount = amount;
         this.description = description;
         this.category = category;
         this.loan = loan;
+        this.goal = goal;
         this.recordDate = recordDate;
     }
 
@@ -61,6 +68,7 @@ public class Record {
                   String description,
                   Category category,
                   Loan loan,
+                  Goal goal,
                   LocalDateTime recordDate) {
         this.id = id;
         this.user = user;
@@ -68,6 +76,7 @@ public class Record {
         this.description = description;
         this.category = category;
         this.loan = loan;
+        this.goal = goal;
         this.recordDate = recordDate;
     }
 
@@ -113,9 +122,9 @@ public class Record {
         this.recordDate = LocalDateTime.parse(recordDate);
     }
 
-//    public void setRecord_date(LocalDateTime record_date) {
-//        this.record_date = record_date;
-//    }
+    public void setRecord_date(LocalDateTime record_date) {
+        this.recordDate = record_date;
+    }
 
     public RecordType getRecordType() {
         return recordType;
@@ -143,12 +152,22 @@ public class Record {
         recordType = RecordType.LOAN;
     }
 
+    public Goal getGoal() {
+        return goal;
+    }
+
+    public void setGoal(Goal goal) {
+        this.goal = goal;
+        recordType = RecordType.GOAL;
+    }
+
     public String getRecordTypeInfo() {
         if (recordType == RecordType.OTHER)
             return "";
         return switch (recordType) {
             case CATEGORY -> category.getDescription();
             case LOAN -> loan.getLoanInfo();
+            case GOAL -> goal.getGoalInfo();
             default -> "";
         };
     }
@@ -160,6 +179,10 @@ public class Record {
         }
         if (loan != null) {
             recordType = RecordType.LOAN;
+            return;
+        }
+        if (goal != null) {
+            recordType = RecordType.GOAL;
             return;
         }
         recordType = RecordType.OTHER;
@@ -175,6 +198,7 @@ public class Record {
                 ", recordType=" + recordType +
                 ", category=" + category +
                 ", loan=" + loan +
+                ", goal=" + goal +
                 ", recordDate=" + recordDate +
                 '}';
     }

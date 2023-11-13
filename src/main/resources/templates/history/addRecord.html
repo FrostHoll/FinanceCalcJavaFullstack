@@ -3,8 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Добавить запись</title>
+    <style>
+        p {
+            margin: 10px;
+        }
+        .addRecordForm {
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
+<script type="text/javascript">
+    window.addEventListener("DOMContentLoaded", (event) => {
+        const typeSelect = document.getElementById("recordType");
+        const category = document.getElementById("categorySelector");
+        const loan = document.getElementById("loanSelector");
+        const goal = document.getElementById("goalSelector");
+
+        typeSelect.addEventListener("change", (e) => {
+        switch (e.target.value) {
+            case "CATEGORY":
+                hideAllSelectors();
+                category.hidden = false;
+                break;
+            case "LOAN":
+                hideAllSelectors();
+                loan.hidden = false;
+                break;
+            case "GOAL":
+                hideAllSelectors();
+                goal.hidden = false;
+                break;
+            default:
+                hideAllSelectors();
+                break;
+            }
+        });
+
+        function hideAllSelectors() {
+            category.hidden = true;
+            loan.hidden = true;
+            goal.hidden = true;
+        }
+    });
+</script>
+
+<form action="#" th:action="@{/history}" method="get">
+    <button>Назад</button>
+</form>
+
 <h3>Добавление записи</h3>
 <form action="#" th:action="@{/history/add}" th:object="${record}" method="post">
     <fieldset>
@@ -19,35 +68,49 @@
             <input type="text" th:field="*{description}">
         </p>
         <p>Тип записи: <br>
-            <select th:field="*{recordType}">
+            <select th:field="*{recordType}" id="recordType">
                 <option th:each="type : ${allTypes}"
                         th:value="${type}"
                         th:text="#{${'record.type.' + type}}">...
                 </option>
             </select>
         </p>
-        <p>Категория: <br>
-            <select th:field="*{category}">
-                <option th:value="null">-- Не выбрано --</option>
-                <option th:each="type : ${categories}"
-                        th:value="${type.getId()}"
-                        th:text="${type.getDescription()}">...
-                </option>
-            </select>
-        </p>
-        <p>Кредит: <br>
-            <select th:field="*{loan}">
-                <option th:value="null">-- Не выбрано --</option>
-                <option th:each="type : ${loans}"
-                        th:value="${type.getId()}"
-                        th:text="${type.getLoanInfo()}">...
-                </option>
-            </select>
-        </p>
+        <div hidden id="categorySelector">
+            <p>Категория: <br>
+                <select th:field="*{category}">
+                    <option th:value="null">-- Не выбрано --</option>
+                    <option th:each="type : ${categories}"
+                            th:value="${type.getId()}"
+                            th:text="${type.getDescription()}">...
+                    </option>
+                </select>
+            </p>
+        </div>
+        <div hidden id="loanSelector">
+            <p>Кредит: <br>
+                <select th:field="*{loan}">
+                    <option th:value="null">-- Не выбрано --</option>
+                    <option th:each="type : ${loans}"
+                            th:value="${type.getId()}"
+                            th:text="${type.getLoanInfo()}">...
+                    </option>
+                </select>
+            </p>
+        </div>
+        <div hidden id="goalSelector">
+            <p>Цель: <br>
+                <select th:field="*{goal}" name="goal" id="goal">
+                    <option th:value="null">-- Не выбрано --</option>
+                    <option th:each="type : ${goals}"
+                            th:value="${type.getId()}"
+                            th:text="${type.getGoalInfo()}">...
+                    </option>
+                </select>
+            </p>
+        </div>
         <p>Дата записи: <br>
             <input type="datetime-local" required th:field="*{recordDate}" th:errorclass="fieldError">
         </p>
-
         <p>
             <input type="submit" value="Сохранить">
         </p>

@@ -9,6 +9,7 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.format.number.PercentStyleFormatter;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -27,7 +28,13 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         WebMvcConfigurer.super.addFormatters(registry);
         registry.addFormatter(dateTimeFormatter());
-        registry.addFormatter(percentStyleFormatter());
+        //registry.addFormatter(percentStyleFormatter());
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        WebMvcConfigurer.super.addResourceHandlers(registry);
+        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
     }
 
     @Bean
@@ -35,8 +42,8 @@ public class MvcConfig implements WebMvcConfigurer {
         return new DateFormatter();
     }
 
-    @Bean
-    public PercentStyleFormatter percentStyleFormatter() {
-        return new PercentFormatter();
-    }
+//    @Bean
+//    public PercentStyleFormatter percentStyleFormatter() {
+//        return new PercentFormatter();
+//    }
 }

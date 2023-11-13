@@ -5,6 +5,10 @@
     <title>Кредиты</title>
 </head>
 <body>
+<form action="#" th:action="@{/home}" method="get">
+    <button>Назад</button>
+</form>
+
 <h3>Кредиты</h3>
 <p th:if="${loans.isEmpty()}">Нет кредитов</p>
 <table th:unless="${loans.isEmpty()}">

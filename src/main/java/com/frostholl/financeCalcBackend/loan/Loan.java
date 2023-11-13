@@ -19,7 +19,7 @@ public class Loan {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private String description;
+    private String description = "Кредит";
 
     @Column(name = "loan_amount")
     private double loanAmount;
@@ -125,6 +125,7 @@ public class Loan {
         this.loanAmount = loanAmount;
     }
 
+    @NumberFormat(pattern = "#0.0#%")
     public float getInterestRate() {
         return interestRate;
     }
@@ -158,9 +159,9 @@ public class Loan {
         this.dateBegin = LocalDate.parse(dateBegin);
     }
 
-//    public void setDateBegin(LocalDateTime dateBegin) {
-//        this.dateBegin = dateBegin;
-//    }
+    public void setDate_Begin(LocalDate dateBegin) {
+        this.dateBegin = dateBegin;
+    }
 
     public LocalDate getDateEnd() {
         return dateEnd;
@@ -170,9 +171,9 @@ public class Loan {
         this.dateEnd = LocalDate.parse(dateEnd);
     }
 
-//    public void setDateEnd(LocalDateTime dateEnd) {
-//        this.dateEnd = dateEnd;
-//    }
+    public void setDate_End(LocalDate dateEnd) {
+        this.dateEnd = dateEnd;
+    }
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     public Double getCurrentPayment() {
@@ -188,12 +189,16 @@ public class Loan {
     }
 
     public void setDateLastPay(String dateLastPay) {
+        if (dateLastPay.isEmpty()) {
+            this.dateLastPay = null;
+            return;
+        }
         this.dateLastPay = LocalDateTime.parse(dateLastPay);
     }
 
-//    public void setDateLastPay(LocalDateTime dateLastPay) {
-//        this.dateLastPay = dateLastPay;
-//    }
+    public void setDate_Last_Pay(LocalDateTime dateLastPay) {
+        this.dateLastPay = dateLastPay;
+    }
 
     public String getLoanInfo() {
         return String.format("%s (%.0f)", description, loanAmount);

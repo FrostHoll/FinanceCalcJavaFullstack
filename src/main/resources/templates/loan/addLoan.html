@@ -5,6 +5,10 @@
     <title>Добавить кредит</title>
 </head>
 <body>
+<form action="#" th:action="@{/loans}" method="get">
+    <button>Назад</button>
+</form>
+
 <h3>Добавление кредита</h3>
 <form action="#" th:action="@{/loans/add}" th:object="${loan}" method="post">
     <fieldset>
@@ -16,7 +20,7 @@
             <input type="number" step="0.01" min=0.01 th:field="*{loanAmount}" th:errorclass="fieldError"/>
         </p>
         <p>Описание: <br>
-            <input type="text" th:field="*{description}" value="Кредит"/>
+            <input type="text" th:field="*{description}"/>
         </p>
         <p>Годовая ставка, %: <br>
             <input type="number" step="0.01" min=1.0 max=100.0 th:field="*{interestRate}" th:errorclass="fieldError">
@@ -32,6 +36,9 @@
         </p>
         <p>Ожидаемая дата закрытия кредита: <br>
             <input type="date" required th:field="*{dateEnd}" th:errorclass="fieldError">
+        </p>
+        <p>Дата последней выплаты: <br>
+            <input type="datetime-local" th:field="*{dateLastPay}" th:errorclass="fieldError">
         </p>
         <p>
             <input type="submit" value="Сохранить">

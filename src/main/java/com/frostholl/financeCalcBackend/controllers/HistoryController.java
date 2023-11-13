@@ -2,6 +2,7 @@ package com.frostholl.financeCalcBackend.controllers;
 
 import com.frostholl.financeCalcBackend.category.Category;
 import com.frostholl.financeCalcBackend.category.CategoryService;
+import com.frostholl.financeCalcBackend.goal.GoalService;
 import com.frostholl.financeCalcBackend.loan.LoanService;
 import com.frostholl.financeCalcBackend.record.Record;
 import com.frostholl.financeCalcBackend.record.RecordService;
@@ -33,6 +34,9 @@ public class HistoryController {
     @Autowired
     private LoanService loanService;
 
+    @Autowired
+    private GoalService goalService;
+
     @ModelAttribute("allTypes")
     public List<RecordType> populateRecordTypes() {
         return Arrays.asList(RecordType.values());
@@ -55,8 +59,10 @@ public class HistoryController {
     public String showAddRecordPage(@AuthenticationPrincipal User user,
                                     Model model) {
         var loans = loanService.getLoansByUser(user);
+        var goals = goalService.getGoalsByUser(user);
         model.addAttribute("record", new Record());
         model.addAttribute("loans", loans);
+        model.addAttribute("goals", goals);
         return "history/addRecord";
     }
 

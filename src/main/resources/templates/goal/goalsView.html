@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Цели</title>
+</head>
+<body>
+<form action="#" th:action="@{/home}" method="get">
+    <button>Назад</button>
+</form>
+
+<h3>Цели</h3>
+<p th:if="${goals.isEmpty()}">Нет целей</p>
+<table th:unless="${goals.isEmpty()}">
+    <thead>
+    <tr>
+        <th>Описание</th>
+        <th>Сумма цели</th>
+        <th>Собранная сумма</th>
+        <th>Дата последнего откладывания</th>
+        <th>Установленное минимальное отложение</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="g: ${goals}">
+        <td th:utext="${g.getGoalName()}">...</td>
+        <td th:utext="${{g.getGoalAmount()}}">...</td>
+        <td th:utext="${{g.getCurrentAmount()}}">...</td>
+        <td th:utext="${{g.getDateLastPay()}}">...</td>
+        <td th:utext="${{g.getMinPay()}}">...</td>
+    </tr>
+    </tbody>
+</table>
+<a href="/goals/add">Добавить цель</a>
+</body>
+</html>
