@@ -26,12 +26,28 @@
                 </option>
             </select>
         </p>
-        <p>
-            <i>(Тут бы надо добавить что-то...)</i>
+        <p>Категория: <br>
+            <select th:field="*{category}">
+                <option th:value="null">-- Не выбрано --</option>
+                <option th:each="type : ${categories}"
+                        th:value="${type.getId()}"
+                        th:text="${type.getDescription()}">...
+                </option>
+            </select>
+        </p>
+        <p>Кредит: <br>
+            <select th:field="*{loan}">
+                <option th:value="null">-- Не выбрано --</option>
+                <option th:each="type : ${loans}"
+                        th:value="${type.getId()}"
+                        th:text="${type.getLoanInfo()}">...
+                </option>
+            </select>
         </p>
         <p>Дата записи: <br>
-            <input type="datetime-local" required th:field="*{record_date}" th:errorclass="fieldError">
+            <input type="datetime-local" required th:field="*{recordDate}" th:errorclass="fieldError">
         </p>
+
         <p>
             <input type="submit" value="Сохранить">
         </p>

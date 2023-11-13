@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 import javax.sql.DataSource;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Configuration
 @EnableWebSecurity
@@ -79,6 +79,6 @@ public class WebSecurityConfig{
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         dateFormat.setLenient(false);
-        binder.registerCustomEditor(LocalDate.class, null, new CustomDateEditor(dateFormat, true));
+        binder.registerCustomEditor(LocalDateTime.class, null, new CustomDateEditor(dateFormat, true));
     }
 }

@@ -1,12 +1,12 @@
 package com.frostholl.financeCalcBackend.record;
 
+import com.frostholl.financeCalcBackend.category.Category;
+import com.frostholl.financeCalcBackend.loan.Loan;
 import com.frostholl.financeCalcBackend.user.User;
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatterBuilder;
 
 @Entity
 @Table(name = "record")
@@ -27,7 +27,16 @@ public class Record {
     @Transient
     private RecordType recordType = RecordType.OTHER;
 
-    private LocalDateTime record_date;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "loan_id")
+    private Loan loan;
+
+    @Column(name = "record_date")
+    private LocalDateTime recordDate;
 
     public Record() {
     }
@@ -35,23 +44,31 @@ public class Record {
     public Record(User user,
                   double amount,
                   String description,
-                  LocalDateTime record_date) {
+                  Category category,
+                  Loan loan,
+                  LocalDateTime recordDate) {
         this.user = user;
         this.amount = amount;
         this.description = description;
-        this.record_date = record_date;
+        this.category = category;
+        this.loan = loan;
+        this.recordDate = recordDate;
     }
 
     public Record(Integer id,
                   User user,
                   double amount,
                   String description,
-                  LocalDateTime record_date) {
+                  Category category,
+                  Loan loan,
+                  LocalDateTime recordDate) {
         this.id = id;
         this.user = user;
         this.amount = amount;
         this.description = description;
-        this.record_date = record_date;
+        this.category = category;
+        this.loan = loan;
+        this.recordDate = recordDate;
     }
 
     public Integer getId() {
@@ -72,6 +89,7 @@ public class Record {
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     public double getAmount() {
+        setAutoRecordType();
         return amount;
     }
 
@@ -87,12 +105,12 @@ public class Record {
         this.description = description;
     }
 
-    public LocalDateTime getRecord_date() {
-        return record_date;
+    public LocalDateTime getRecordDate() {
+        return recordDate;
     }
 
-    public void setRecord_date(String record_date) {
-        this.record_date = LocalDateTime.parse(record_date);
+    public void setRecordDate(String recordDate) {
+        this.recordDate = LocalDateTime.parse(recordDate);
     }
 
 //    public void setRecord_date(LocalDateTime record_date) {
@@ -107,6 +125,46 @@ public class Record {
         this.recordType = recordType;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+        recordType = RecordType.CATEGORY;
+    }
+
+    public Loan getLoan() {
+        return loan;
+    }
+
+    public void setLoan(Loan loan) {
+        this.loan = loan;
+        recordType = RecordType.LOAN;
+    }
+
+    public String getRecordTypeInfo() {
+        if (recordType == RecordType.OTHER)
+            return "";
+        return switch (recordType) {
+            case CATEGORY -> category.getDescription();
+            case LOAN -> loan.getLoanInfo();
+            default -> "";
+        };
+    }
+
+    private void setAutoRecordType() {
+        if (category != null) {
+            recordType = RecordType.CATEGORY;
+            return;
+        }
+        if (loan != null) {
+            recordType = RecordType.LOAN;
+            return;
+        }
+        recordType = RecordType.OTHER;
+    }
+
     @Override
     public String toString() {
         return "Record{" +
@@ -115,7 +173,9 @@ public class Record {
                 ", amount=" + amount +
                 ", description='" + description + '\'' +
                 ", recordType=" + recordType +
-                ", record_date=" + record_date +
+                ", category=" + category +
+                ", loan=" + loan +
+                ", recordDate=" + recordDate +
                 '}';
     }
 }

@@ -17,4 +17,8 @@ public class LoanService {
         var loansList = loanRepository.getLoansByUserId(user.getId());
         return loansList.orElse(null);
     }
+
+    public void addNewLoan(Loan loan) {
+        loanRepository.save(loan);
+    }
 }

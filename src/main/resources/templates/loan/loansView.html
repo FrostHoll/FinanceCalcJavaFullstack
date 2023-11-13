@@ -6,7 +6,8 @@
 </head>
 <body>
 <h3>Кредиты</h3>
-<table>
+<p th:if="${loans.isEmpty()}">Нет кредитов</p>
+<table th:unless="${loans.isEmpty()}">
     <thead>
     <tr>
         <th>Описание</th>
@@ -34,6 +35,6 @@
     </tr>
     </tbody>
 </table>
-<a href="/home">Добавить кредит</a>
+<a href="/loans/add">Добавить кредит</a>
 </body>
 </html>

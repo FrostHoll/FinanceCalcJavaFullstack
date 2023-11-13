@@ -4,7 +4,8 @@ import com.frostholl.financeCalcBackend.user.User;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.NumberFormat;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "loan")
@@ -28,19 +29,19 @@ public class Loan {
 
     private boolean annuity;
 
-    private Double balance;
+    private Double balance = 0.0d;
 
     @Column(name = "date_begin")
-    private ZonedDateTime dateBegin;
+    private LocalDate dateBegin;
 
     @Column(name = "date_end")
-    private ZonedDateTime dateEnd;
+    private LocalDate dateEnd;
 
     @Column(name = "current_payment")
     private Double currentPayment;
 
     @Column(name = "date_last_pay")
-    private ZonedDateTime dateLastPay;
+    private LocalDateTime dateLastPay;
 
     public Loan() {
     }
@@ -51,10 +52,10 @@ public class Loan {
                 float interestRate,
                 boolean annuity,
                 Double balance,
-                ZonedDateTime dateBegin,
-                ZonedDateTime dateEnd,
+                LocalDate dateBegin,
+                LocalDate dateEnd,
                 Double currentPayment,
-                ZonedDateTime dateLastPay) {
+                LocalDateTime dateLastPay) {
         this.user = user;
         this.description = description;
         this.loanAmount = loanAmount;
@@ -74,10 +75,10 @@ public class Loan {
                 float interestRate,
                 boolean annuity,
                 Double balance,
-                ZonedDateTime dateBegin,
-                ZonedDateTime dateEnd,
+                LocalDate dateBegin,
+                LocalDate dateEnd,
                 Double currentPayment,
-                ZonedDateTime dateLastPay) {
+                LocalDateTime dateLastPay) {
         this.id = id;
         this.user = user;
         this.description = description;
@@ -124,7 +125,6 @@ public class Loan {
         this.loanAmount = loanAmount;
     }
 
-    @NumberFormat(style = NumberFormat.Style.PERCENT)
     public float getInterestRate() {
         return interestRate;
     }
@@ -150,21 +150,29 @@ public class Loan {
         this.balance = balance;
     }
 
-    public ZonedDateTime getDateBegin() {
+    public LocalDate getDateBegin() {
         return dateBegin;
     }
 
-    public void setDateBegin(ZonedDateTime dateBegin) {
-        this.dateBegin = dateBegin;
+    public void setDateBegin(String dateBegin) {
+        this.dateBegin = LocalDate.parse(dateBegin);
     }
 
-    public ZonedDateTime getDateEnd() {
+//    public void setDateBegin(LocalDateTime dateBegin) {
+//        this.dateBegin = dateBegin;
+//    }
+
+    public LocalDate getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(ZonedDateTime dateEnd) {
-        this.dateEnd = dateEnd;
+    public void setDateEnd(String dateEnd) {
+        this.dateEnd = LocalDate.parse(dateEnd);
     }
+
+//    public void setDateEnd(LocalDateTime dateEnd) {
+//        this.dateEnd = dateEnd;
+//    }
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     public Double getCurrentPayment() {
@@ -175,11 +183,36 @@ public class Loan {
         this.currentPayment = currentPayment;
     }
 
-    public ZonedDateTime getDateLastPay() {
+    public LocalDateTime getDateLastPay() {
         return dateLastPay;
     }
 
-    public void setDateLastPay(ZonedDateTime dateLastPay) {
-        this.dateLastPay = dateLastPay;
+    public void setDateLastPay(String dateLastPay) {
+        this.dateLastPay = LocalDateTime.parse(dateLastPay);
+    }
+
+//    public void setDateLastPay(LocalDateTime dateLastPay) {
+//        this.dateLastPay = dateLastPay;
+//    }
+
+    public String getLoanInfo() {
+        return String.format("%s (%.0f)", description, loanAmount);
+    }
+
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "id=" + id +
+                ", user=" + user +
+                ", description='" + description + '\'' +
+                ", loanAmount=" + loanAmount +
+                ", interestRate=" + interestRate +
+                ", annuity=" + annuity +
+                ", balance=" + balance +
+                ", dateBegin=" + dateBegin +
+                ", dateEnd=" + dateEnd +
+                ", currentPayment=" + currentPayment +
+                ", dateLastPay=" + dateLastPay +
+                '}';
     }
 }

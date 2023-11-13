@@ -6,12 +6,14 @@
 </head>
 <body>
 <h3>История</h3>
-<table>
+<p th:if="${records.isEmpty()}">Нет истории</p>
+<table th:unless="${records.isEmpty()}">
     <thead>
     <tr>
         <th>Сумма</th>
         <th>Описание</th>
         <th>Тип</th>
+        <th>Информация</th>
         <th>Дата</th>
     </tr>
     </thead>
@@ -20,7 +22,8 @@
         <td th:utext="${{rec.getAmount()}}">...</td>
         <td th:utext="${{rec.getDescription()}}">...</td>
         <td th:utext="#{${'record.type.' + rec.getRecordType()}}">...</td>
-        <td th:utext="${{rec.getRecord_date()}}">...</td>
+        <td th:utext="${rec.getRecordTypeInfo()}">...</td>
+        <td th:utext="${{rec.getRecordDate()}}">...</td>
     </tr>
     </tbody>
 </table>
