@@ -1,73 +1,65 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Добавить запись</title>
     <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
-    <style>
-        p {
-            margin: 10px;
-        }
-        .addRecordForm {
-            display: flex;
-            justify-content: start;
-            flex-direction: column;
-        }
-    </style>
 </head>
-<body>
-<script type="text/javascript">
-    window.addEventListener("DOMContentLoaded", (event) => {
-        const typeSelect = document.getElementById("recordType");
-        const category = document.getElementById("categorySelector");
-        const loan = document.getElementById("loanSelector");
-        const goal = document.getElementById("goalSelector");
-        const deposit = document.getElementById("depositSelector");
 
-        typeSelect.addEventListener("change", (e) => {
-        switch (e.target.value) {
-            case "CATEGORY":
-                hideAllSelectors();
-                category.hidden = false;
-                break;
-            case "LOAN":
-                hideAllSelectors();
-                loan.hidden = false;
-                break;
-            case "GOAL":
-                hideAllSelectors();
-                goal.hidden = false;
-                break;
-            case "DEPOSIT":
-                hideAllSelectors();
-                deposit.hidden = false;
-                break;
-            default:
-                hideAllSelectors();
-                break;
+<body>
+    <script type="text/javascript">
+        window.addEventListener("DOMContentLoaded", (event) => {
+            const typeSelect = document.getElementById("recordType");
+            const category = document.getElementById("categorySelector");
+            const loan = document.getElementById("loanSelector");
+            const goal = document.getElementById("goalSelector");
+            const deposit = document.getElementById("depositSelector");
+
+            typeSelect.addEventListener("change", (e) => {
+                switch (e.target.value) {
+                    case "CATEGORY":
+                        hideAllSelectors();
+                        category.hidden = false;
+                        break;
+                    case "LOAN":
+                        hideAllSelectors();
+                        loan.hidden = false;
+                        break;
+                    case "GOAL":
+                        hideAllSelectors();
+                        goal.hidden = false;
+                        break;
+                    case "DEPOSIT":
+                        hideAllSelectors();
+                        deposit.hidden = false;
+                        break;
+                    default:
+                        hideAllSelectors();
+                        break;
+                }
+            });
+
+            function hideAllSelectors() {
+                category.hidden = true;
+                loan.hidden = true;
+                goal.hidden = true;
+                deposit.hidden = true;
             }
         });
-
-        function hideAllSelectors() {
-            category.hidden = true;
-            loan.hidden = true;
-            goal.hidden = true;
-            deposit.hidden = true;
-        }
-    });
-</script>
-<div class="header">
-    <div class="item-container">
-        <h2>Финансовый калькулятор</h2>
-        <h3>Добавление записи</h3>
+    </script>
+    <div class="header">
+        <div class="item-container">
+            <h2>Финансовый калькулятор</h2>
+            <h3>Добавление записи</h3>
+        </div>
+        <form th:action="@{/history}" method="get">
+            <input class="back-button" type="submit" value="Назад" />
+        </form>
     </div>
-    <form th:action="@{/history}" method="get">
-        <input class="back-button" type="submit" value="Назад" />
-    </form>
-</div>
 
-<form id="addRecordForm" autocomplete="off" action="#" th:action="@{/history/add}" th:object="${record}" method="post">
-    <fieldset>
+    <form class="form-container" autocomplete="off" action="#" th:action="@{/history/add}" th:object="${record}"
+        method="post">
         <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
             <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
         </ul>
@@ -84,9 +76,7 @@
         </p>
         <p>Тип записи: <br>
             <select th:field="*{recordType}" id="recordType">
-                <option th:each="type : ${allTypes}"
-                        th:value="${type}"
-                        th:text="#{${'record.type.' + type}}">...
+                <option th:each="type : ${allTypes}" th:value="${type}" th:text="#{${'record.type.' + type}}">...
                 </option>
             </select>
         </p>
@@ -94,9 +84,8 @@
             <p>Категория: <br>
                 <select th:field="*{category}">
                     <option th:value="null">-- Не выбрано --</option>
-                    <option th:each="type : ${categories}"
-                            th:value="${type.getId()}"
-                            th:text="${type.getDescription()}">...
+                    <option th:each="type : ${categories}" th:value="${type.getId()}"
+                        th:text="${type.getDescription()}">...
                     </option>
                 </select>
             </p>
@@ -105,9 +94,7 @@
             <p>Кредит: <br>
                 <select th:field="*{loan}">
                     <option th:value="null">-- Не выбрано --</option>
-                    <option th:each="type : ${loans}"
-                            th:value="${type.getId()}"
-                            th:text="${type.getLoanInfo()}">...
+                    <option th:each="type : ${loans}" th:value="${type.getId()}" th:text="${type.getLoanInfo()}">...
                     </option>
                 </select>
             </p>
@@ -116,9 +103,7 @@
             <p>Цель: <br>
                 <select th:field="*{goal}">
                     <option th:value="null">-- Не выбрано --</option>
-                    <option th:each="type : ${goals}"
-                            th:value="${type.getId()}"
-                            th:text="${type.getGoalInfo()}">...
+                    <option th:each="type : ${goals}" th:value="${type.getId()}" th:text="${type.getGoalInfo()}">...
                     </option>
                 </select>
             </p>
@@ -127,9 +112,8 @@
             <p>Снять с вклада: <br>
                 <select th:field="*{deposit}">
                     <option th:value="null">-- Не выбрано --</option>
-                    <option th:each="type : ${deposits}"
-                            th:value="${type.getId()}"
-                            th:text="${type.getDepositInfo()}">...
+                    <option th:each="type : ${deposits}" th:value="${type.getId()}" th:text="${type.getDepositInfo()}">
+                        ...
                     </option>
                 </select>
             </p>
@@ -138,9 +122,9 @@
             <input type="datetime-local" required th:field="*{recordDate}" th:errorclass="fieldError">
         </p>
         <p>
-            <input type="submit" value="Сохранить">
+            <input class="submit-button" type="submit" value="Сохранить">
         </p>
-    </fieldset>
-</form>
+    </form>
 </body>
+
 </html>

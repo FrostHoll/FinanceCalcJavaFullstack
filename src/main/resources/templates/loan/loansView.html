@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Кредиты</title>
     <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
 </head>
-<body>
-<div class="header">
-    <div class="item-container">
-        <h2>Финансовый калькулятор</h2>
-        <h3>Кредиты</h3>
-    </div>
-    <form th:action="@{/home}" method="get">
-        <input class="back-button" type="submit" value="Назад" />
-    </form>
-</div>
 
-<p th:if="${loans.isEmpty()}">Нет кредитов</p>
-<table th:unless="${loans.isEmpty()}">
-    <thead>
-    <tr>
-        <th>Описание</th>
-        <th>Сумма кредита</th>
-        <th>Годовая ставка</th>
-        <th>С процентами</th>
-        <th>Платеж</th>
-        <th>Открыт</th>
-        <th>Выплачено</th>
-        <th>Сумма на текущий период</th>
-        <th>Последний платеж</th>
-        <th>Ожидаемая дата закрытия</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="l: ${loans}">
-        <td th:utext="${l.getDescription()}">...</td>
-        <td th:utext="${{l.getLoanAmount()}}">...</td>
-        <td th:utext="${{l.getInterestRate()}}">...</td>
-        <td th:utext="${{l.getAmountWithPercents()}}">...</td>
-        <td th:utext="${l.isAnnuity} ? 'Аннуитетный' : 'Дифференцированный'">...</td>
-        <td th:utext="${{l.getDateBegin()}}">...</td>
-        <td th:utext="${{l.getBalance()}}">...</td>
-        <td th:utext="${{l.getCurrentPayment()}}">...</td>
-        <td th:utext="${{l.getDateLastPay()}}">...</td>
-        <td th:utext="${{l.getDateEnd()}}">...</td>
-    </tr>
-    </tbody>
-</table>
-<a href="/loans/add">Добавить кредит</a>
+<body>
+    <div class="header">
+        <div class="item-container">
+            <h2>Финансовый калькулятор</h2>
+            <h3>Кредиты</h3>
+        </div>
+        <form th:action="@{/home}" method="get">
+            <input class="back-button" type="submit" value="Назад" />
+        </form>
+    </div>
+    <div class="table-container">
+        <a class="submit-button" href="/loans/add">Добавить кредит</a>
+        <p th:if="${loans.isEmpty()}">Нет кредитов</p>
+        <table class="table" th:unless="${loans.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>Описание</th>
+                    <th>Сумма кредита</th>
+                    <th>Годовая ставка</th>
+                    <th>С процентами</th>
+                    <th>Платеж</th>
+                    <th>Открыт</th>
+                    <th>Выплачено</th>
+                    <th>Сумма на текущий период</th>
+                    <th>Последний платеж</th>
+                    <th>Ожидаемая дата закрытия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="l: ${loans}">
+                    <td th:utext="${l.getDescription()}">...</td>
+                    <td th:utext="${{l.getLoanAmount()}}">...</td>
+                    <td th:utext="${{l.getInterestRate()}}">...</td>
+                    <td th:utext="${{l.getAmountWithPercents()}}">...</td>
+                    <td th:utext="${l.isAnnuity} ? 'Аннуитетный' : 'Дифференцированный'">...</td>
+                    <td th:utext="${{l.getDateBegin()}}">...</td>
+                    <td th:utext="${{l.getBalance()}}">...</td>
+                    <td th:utext="${{l.getCurrentPayment()}}">...</td>
+                    <td th:utext="${{l.getDateLastPay()}}">...</td>
+                    <td th:utext="${{l.getDateEnd()}}">...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
+
 </html>

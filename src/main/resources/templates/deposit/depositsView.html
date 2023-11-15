@@ -1,38 +1,48 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Вклады</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
 </head>
-<body>
-<form action="#" th:action="@{/home}" method="get">
-    <button>Назад</button>
-</form>
 
-<h3>Вклады</h3>
-<p th:if="${deposits.isEmpty()}">Нет вкладов</p>
-<table th:unless="${deposits.isEmpty()}">
-    <thead>
-    <tr>
-        <th>Описание</th>
-        <th>Изначальная сумма вклада</th>
-        <th>Годовая ставка</th>
-        <th>Дата открытия вклада</th>
-        <th>Проценты</th>
-        <th>Неснижаемый остаток</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="d: ${deposits}">
-        <td th:utext="${d.getDescription()}">...</td>
-        <td th:utext="${{d.getDepositAmount()}}">...</td>
-        <td th:utext="${{d.getInterestRate()}}">...</td>
-        <td th:utext="${{d.getDateBegin()}}">...</td>
-        <td th:utext="${{d.getRevenue()}}">...</td>
-        <td th:utext="${{d.getMinBalance()}}">...</td>
-    </tr>
-    </tbody>
-</table>
-<a href="/deposits/add">Добавить вклад</a>
+<body>
+    <div class="header">
+        <div class="item-container">
+            <h2>Финансовый калькулятор</h2>
+            <h3>Вклады</h3>
+        </div>
+        <form th:action="@{/home}" method="get">
+            <input class="back-button" type="submit" value="Назад" />
+        </form>
+    </div>
+    <div class="table-container">
+        <a class="submit-button" href="/deposits/add">Добавить вклад</a>
+        <p th:if="${deposits.isEmpty()}">Нет вкладов</p>
+        <table class="table" th:unless="${deposits.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>Описание</th>
+                    <th>Изначальная сумма вклада</th>
+                    <th>Годовая ставка</th>
+                    <th>Дата открытия вклада</th>
+                    <th>Проценты</th>
+                    <th>Неснижаемый остаток</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="d: ${deposits}">
+                    <td th:utext="${d.getDescription()}">...</td>
+                    <td th:utext="${{d.getDepositAmount()}}">...</td>
+                    <td th:utext="${{d.getInterestRate()}}">...</td>
+                    <td th:utext="${{d.getDateBegin()}}">...</td>
+                    <td th:utext="${{d.getRevenue()}}">...</td>
+                    <td th:utext="${{d.getMinBalance()}}">...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
+
 </html>

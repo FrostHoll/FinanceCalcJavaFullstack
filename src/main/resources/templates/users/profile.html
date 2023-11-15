@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Редактирование профиля</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
 </head>
-<body>
-<form action="#" th:action="@{/home}" method="get">
-    <button>Назад</button>
-</form>
 
-<h3>Редактирование профиля</h3>
-<form th:action="@{/user/edit}" method="post">
-    <div>
-        <label>Логин: <input type="text" th:value="${user.getLogin()}" name="login"></label>
+<body>
+    <div class="header">
+        <div class="item-container">
+            <h2>Финансовый калькулятор</h2>
+            <h3>Редактирование профиля</h3>
+        </div>
+        <form th:action="@{/home}" method="get">
+            <input class="back-button" type="submit" value="Назад" />
+        </form>
     </div>
-    <div>
-        <label>Фамилия: <input type="text" th:value="${user.getUser_surname()}" name="user_surname"></label>
-    </div>
-    <div>
-        <label>Имя: <input type="text" th:value="${user.getUser_name()}" name="user_name"></label>
-    </div>
-    <input type="submit" value="Сохранить">
-</form>
+    <form class="form-container" th:action="@{/user/edit}" method="post">
+        <p>Логин: <br>
+            <input type="text" th:value="${user.getLogin()}" name="login">
+        </p>
+        <p>Фамилия: <br>
+            <input type="text" th:value="${user.getUser_surname()}" name="user_surname">
+        </p>
+        <p>Имя: <br>
+            <input type="text" th:value="${user.getUser_name()}" name="user_name">
+        </p>
+        <p>
+            <input class="submit-button" type="submit" value="Сохранить">
+        </p>
+    </form>
 </body>
+
 </html>

@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Цели</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
 </head>
-<body>
-<form action="#" th:action="@{/home}" method="get">
-    <button>Назад</button>
-</form>
 
-<h3>Цели</h3>
-<p th:if="${goals.isEmpty()}">Нет целей</p>
-<table th:unless="${goals.isEmpty()}">
-    <thead>
-    <tr>
-        <th>Описание</th>
-        <th>Сумма цели</th>
-        <th>Собранная сумма</th>
-        <th>Дата последнего откладывания</th>
-        <th>Установленное минимальное отложение</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="g: ${goals}">
-        <td th:utext="${g.getGoalName()}">...</td>
-        <td th:utext="${{g.getGoalAmount()}}">...</td>
-        <td th:utext="${{g.getCurrentAmount()}}">...</td>
-        <td th:utext="${{g.getDateLastPay()}}">...</td>
-        <td th:utext="${{g.getMinPay()}}">...</td>
-    </tr>
-    </tbody>
-</table>
-<a href="/goals/add">Добавить цель</a>
+<body>
+    <div class="header">
+        <div class="item-container">
+            <h2>Финансовый калькулятор</h2>
+            <h3>Цели</h3>
+        </div>
+        <form th:action="@{/home}" method="get">
+            <input class="back-button" type="submit" value="Назад" />
+        </form>
+    </div>
+    <div class="table-container">
+        <a class="submit-button" href="/goals/add">Добавить цель</a>
+        <p th:if="${goals.isEmpty()}">Нет целей</p>
+        <table class="table" th:unless="${goals.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>Описание</th>
+                    <th>Сумма цели</th>
+                    <th>Собранная сумма</th>
+                    <th>Дата последнего откладывания</th>
+                    <!--        <th>Установленное минимальное отложение</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="g: ${goals}">
+                    <td th:utext="${g.getGoalName()}">...</td>
+                    <td th:utext="${{g.getGoalAmount()}}">...</td>
+                    <td th:utext="${{g.getCurrentAmount()}}">...</td>
+                    <td th:utext="${{g.getDateLastPay()}}">...</td>
+                    <!--        <td th:utext="${{g.getMinPay()}}">...</td>-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
+
 </html>

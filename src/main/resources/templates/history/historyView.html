@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>История</title>
     <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
 </head>
-<body>
-<div class="header">
-    <div class="item-container">
-        <h2>Финансовый калькулятор</h2>
-        <h3>Записи</h3>
-    </div>
-    <form th:action="@{/home}" method="get">
-        <input class="back-button" type="submit" value="Назад" />
-    </form>
-</div>
 
-<p th:if="${records.isEmpty()}">Нет истории</p>
-<table th:unless="${records.isEmpty()}">
-    <thead>
-    <tr>
-        <th>Сумма</th>
-        <th>Описание</th>
-        <th>Тип</th>
-        <th>Информация</th>
-        <th>Дата</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="rec: ${records}">
-        <td th:utext="${{rec.getAmount()}}">...</td>
-        <td th:utext="${{rec.getDescription()}}">...</td>
-        <td th:utext="#{${'record.type.' + rec.getRecordType()}}">...</td>
-        <td th:utext="${rec.getRecordTypeInfo()}">...</td>
-        <td th:utext="${{rec.getRecordDate()}}">...</td>
-    </tr>
-    </tbody>
-</table>
-<a href="/history/add">Добавить запись</a>
+<body>
+    <div class="header">
+        <div class="item-container">
+            <h2>Финансовый калькулятор</h2>
+            <h3>Записи</h3>
+        </div>
+        <form th:action="@{/home}" method="get">
+            <input class="back-button" type="submit" value="Назад" />
+        </form>
+    </div>
+    <div class="table-container">
+        <a class="submit-button" href="/history/add">Добавить запись</a>
+        <p th:if="${records.isEmpty()}">Нет истории</p>
+        <table class="table" th:unless="${records.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>Сумма</th>
+                    <th>Описание</th>
+                    <th>Тип</th>
+                    <th>Информация</th>
+                    <th>Дата</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="rec: ${records}">
+                    <td th:utext="${{rec.getAmount()}}">...</td>
+                    <td th:utext="${{rec.getDescription()}}">...</td>
+                    <td th:utext="#{${'record.type.' + rec.getRecordType()}}">...</td>
+                    <td th:utext="${rec.getRecordTypeInfo()}">...</td>
+                    <td th:utext="${{rec.getRecordDate()}}">...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
+
 </html>

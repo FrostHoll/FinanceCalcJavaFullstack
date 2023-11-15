@@ -18,7 +18,7 @@
         </form>
     </div>
 
-    <form action="#" th:action="@{/loans/add}" th:object="${loan}" method="post">
+    <form class="form-container" action="#" th:action="@{/loans/add}" th:object="${loan}" method="post">
         <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
             <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
         </ul>
@@ -48,7 +48,7 @@
             <input type="datetime-local" th:field="*{dateLastPay}" th:errorclass="fieldError">
         </p>
         <p>
-            <input type="submit" value="Сохранить">
+            <input class="submit-button" type="submit" value="Сохранить">
         </p>
     </form>
 </body>

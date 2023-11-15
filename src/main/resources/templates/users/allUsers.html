@@ -1,32 +1,42 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Все пользователи</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
 </head>
-<body>
-<form action="#" th:action="@{/home}" method="get">
-    <button>Назад</button>
-</form>
 
-<h3>Список зарегистрированных пользователей</h3>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Логин</th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user: ${users}">
-        <td th:utext="${user.getId()}">...</td>
-        <td th:utext="${user.getLogin()}">...</td>
-        <td th:utext="${user.getUser_surname()}">...</td>
-        <td th:utext="${user.getUser_name()}">...</td>
-    </tr>
-    </tbody>
-</table>
+<body>
+    <div class="header">
+        <div class="item-container">
+            <h2>Финансовый калькулятор</h2>
+            <h3>Список зарегистрированных пользователей</h3>
+        </div>
+        <form th:action="@{/home}" method="get">
+            <input class="back-button" type="submit" value="Назад" />
+        </form>
+    </div>
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Логин</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user: ${users}">
+                    <td th:utext="${user.getId()}">...</td>
+                    <td th:utext="${user.getLogin()}">...</td>
+                    <td th:utext="${user.getUser_surname()}">...</td>
+                    <td th:utext="${user.getUser_name()}">...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
+
 </html>

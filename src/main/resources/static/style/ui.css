@@ -47,7 +47,7 @@ body {
     background-color: #678fe5;
     border-radius: 5px;
     color: white;
-    border: none;
+    border: none;   
     font-family: 'Segoe UI';
     font-weight: bold; 
     font-size: 0.8em;
@@ -85,4 +85,79 @@ body {
 
 .limits-container a:hover {
     color: rgb(195, 190, 190);
+}
+
+.form-container {
+    width: 50vw;
+    margin: 10px;
+    background-color: #6081c5;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.form-container p {
+    margin: 10px;
+    font-family: 'Segoe UI';
+    color: white;
+}
+
+.table-container {
+    margin: 10px 10px 10px 10px;
+    width: 100vw;
+}
+
+.submit-button {
+    width: 180px;
+    background-color: #678fe5;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Segoe UI';
+    text-decoration: none;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: #7696dc;
+}
+
+.table {
+	width: 80%;
+	border: none;
+	margin-bottom: 20px;
+    font-family: 'Segoe UI';
+    
+}
+.table thead th {
+	font-weight: bold;
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	background: #678fe5;
+	font-size: 14px;
+    color: white;
+}
+.table thead tr th:first-child {
+	border-radius: 8px 0 0 8px;
+}
+.table thead tr th:last-child {
+	border-radius: 0 8px 8px 0;
+}
+.table tbody td {
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	font-size: 14px;
+	vertical-align: top;
+    color: rgb(44, 44, 44);
+}
+.table tbody tr:nth-child(even){
+	background: #94abda;
+}
+.table tbody tr td:first-child {
+	border-radius: 8px 0 0 8px;
+}
+.table tbody tr td:last-child {
+	border-radius: 0 8px 8px 0;
 }
