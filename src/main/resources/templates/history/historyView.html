@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>История</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
 </head>
 <body>
-<form action="#" th:action="@{/home}" method="get">
-    <button>Назад</button>
-</form>
+<div class="header">
+    <div class="item-container">
+        <h2>Финансовый калькулятор</h2>
+        <h3>Записи</h3>
+    </div>
+    <form th:action="@{/home}" method="get">
+        <input class="back-button" type="submit" value="Назад" />
+    </form>
+</div>
 
-<h3>История</h3>
 <p th:if="${records.isEmpty()}">Нет истории</p>
 <table th:unless="${records.isEmpty()}">
     <thead>

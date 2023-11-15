@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Добавить запись</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
     <style>
         p {
             margin: 10px;
@@ -21,6 +22,7 @@
         const category = document.getElementById("categorySelector");
         const loan = document.getElementById("loanSelector");
         const goal = document.getElementById("goalSelector");
+        const deposit = document.getElementById("depositSelector");
 
         typeSelect.addEventListener("change", (e) => {
         switch (e.target.value) {
@@ -36,6 +38,10 @@
                 hideAllSelectors();
                 goal.hidden = false;
                 break;
+            case "DEPOSIT":
+                hideAllSelectors();
+                deposit.hidden = false;
+                break;
             default:
                 hideAllSelectors();
                 break;
@@ -46,20 +52,29 @@
             category.hidden = true;
             loan.hidden = true;
             goal.hidden = true;
+            deposit.hidden = true;
         }
     });
 </script>
+<div class="header">
+    <div class="item-container">
+        <h2>Финансовый калькулятор</h2>
+        <h3>Добавление записи</h3>
+    </div>
+    <form th:action="@{/history}" method="get">
+        <input class="back-button" type="submit" value="Назад" />
+    </form>
+</div>
 
-<form action="#" th:action="@{/history}" method="get">
-    <button>Назад</button>
-</form>
-
-<h3>Добавление записи</h3>
-<form action="#" th:action="@{/history/add}" th:object="${record}" method="post">
+<form id="addRecordForm" autocomplete="off" action="#" th:action="@{/history/add}" th:object="${record}" method="post">
     <fieldset>
         <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
             <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
         </ul>
+
+        <div th:if="${message != null}">
+            <em th:text="${message}">message</em>
+        </div>
 
         <p>Сумма: <br>
             <input type="number" step="0.01" th:field="*{amount}" th:errorclass="fieldError">
@@ -99,11 +114,22 @@
         </div>
         <div hidden id="goalSelector">
             <p>Цель: <br>
-                <select th:field="*{goal}" name="goal" id="goal">
+                <select th:field="*{goal}">
                     <option th:value="null">-- Не выбрано --</option>
                     <option th:each="type : ${goals}"
                             th:value="${type.getId()}"
                             th:text="${type.getGoalInfo()}">...
+                    </option>
+                </select>
+            </p>
+        </div>
+        <div hidden id="depositSelector">
+            <p>Снять с вклада: <br>
+                <select th:field="*{deposit}">
+                    <option th:value="null">-- Не выбрано --</option>
+                    <option th:each="type : ${deposits}"
+                            th:value="${type.getId()}"
+                            th:text="${type.getDepositInfo()}">...
                     </option>
                 </select>
             </p>

@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Добавить кредит</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
 </head>
-<body>
-<form action="#" th:action="@{/loans}" method="get">
-    <button>Назад</button>
-</form>
 
-<h3>Добавление кредита</h3>
-<form action="#" th:action="@{/loans/add}" th:object="${loan}" method="post">
-    <fieldset>
+<body>
+    <div class="header">
+        <div class="item-container">
+            <h2>Финансовый калькулятор</h2>
+            <h3>Добавление кредита</h3>
+        </div>
+        <form th:action="@{/loans}" method="get">
+            <input class="back-button" type="submit" value="Назад" />
+        </form>
+    </div>
+
+    <form action="#" th:action="@{/loans/add}" th:object="${loan}" method="post">
         <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
             <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
         </ul>
 
         <p>Сумма: <br>
-            <input type="number" step="0.01" min=0.01 th:field="*{loanAmount}" th:errorclass="fieldError"/>
+            <input type="number" step="0.01" min=0.01 th:field="*{loanAmount}" th:errorclass="fieldError" />
         </p>
         <p>Описание: <br>
-            <input type="text" th:field="*{description}"/>
+            <input type="text" th:field="*{description}" />
         </p>
         <p>Годовая ставка, %: <br>
             <input type="number" step="0.01" min=1.0 max=100.0 th:field="*{interestRate}" th:errorclass="fieldError">
         </p>
         <p>Аннуитетный платеж?
-            <input type="checkbox" th:field="*{annuity}"/>
+            <input type="checkbox" th:field="*{annuity}" />
         </p>
         <p>Дата открытия кредита: <br>
             <input type="date" required th:field="*{dateBegin}" th:errorclass="fieldError">
@@ -43,7 +50,7 @@
         <p>
             <input type="submit" value="Сохранить">
         </p>
-    </fieldset>
-</form>
+    </form>
 </body>
+
 </html>

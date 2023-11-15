@@ -1,6 +1,8 @@
 package com.frostholl.financeCalcBackend.record;
 
 import com.frostholl.financeCalcBackend.category.Category;
+import com.frostholl.financeCalcBackend.deposit.Deposit;
+import com.frostholl.financeCalcBackend.deposit.DepositService;
 import com.frostholl.financeCalcBackend.goal.Goal;
 import com.frostholl.financeCalcBackend.loan.Loan;
 import com.frostholl.financeCalcBackend.user.User;
@@ -40,6 +42,10 @@ public class Record {
     @JoinColumn(name = "goal_id")
     private Goal goal;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "deposit_id")
+    private Deposit deposit;
+
     @Column(name = "record_date")
     private LocalDateTime recordDate;
 
@@ -52,6 +58,7 @@ public class Record {
                   Category category,
                   Loan loan,
                   Goal goal,
+                  Deposit deposit,
                   LocalDateTime recordDate) {
         this.user = user;
         this.amount = amount;
@@ -59,6 +66,7 @@ public class Record {
         this.category = category;
         this.loan = loan;
         this.goal = goal;
+        this.deposit = deposit;
         this.recordDate = recordDate;
     }
 
@@ -69,6 +77,7 @@ public class Record {
                   Category category,
                   Loan loan,
                   Goal goal,
+                  Deposit deposit,
                   LocalDateTime recordDate) {
         this.id = id;
         this.user = user;
@@ -77,6 +86,7 @@ public class Record {
         this.category = category;
         this.loan = loan;
         this.goal = goal;
+        this.deposit = deposit;
         this.recordDate = recordDate;
     }
 
@@ -161,6 +171,14 @@ public class Record {
         recordType = RecordType.GOAL;
     }
 
+    public Deposit getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(Deposit deposit) {
+        this.deposit = deposit;
+    }
+
     public String getRecordTypeInfo() {
         if (recordType == RecordType.OTHER)
             return "";
@@ -168,6 +186,7 @@ public class Record {
             case CATEGORY -> category.getDescription();
             case LOAN -> loan.getLoanInfo();
             case GOAL -> goal.getGoalInfo();
+            case DEPOSIT -> deposit.getDepositInfo();
             default -> "";
         };
     }
@@ -185,6 +204,10 @@ public class Record {
             recordType = RecordType.GOAL;
             return;
         }
+        if (deposit != null) {
+            recordType = RecordType.DEPOSIT;
+            return;
+        }
         recordType = RecordType.OTHER;
     }
 
@@ -199,6 +222,7 @@ public class Record {
                 ", category=" + category +
                 ", loan=" + loan +
                 ", goal=" + goal +
+                ", deposit=" + deposit +
                 ", recordDate=" + recordDate +
                 '}';
     }

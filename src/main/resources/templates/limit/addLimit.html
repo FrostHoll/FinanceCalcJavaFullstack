@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить лимит</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
+</head>
+<body>
+<div class="header">
+    <div class="item-container">
+        <h2>Финансовый калькулятор</h2>
+        <h3>Изменить лимит</h3>
+    </div>
+    <form th:action="@{/limits}" method="get">
+        <input class="back-button" type="submit" value="Назад" />
+    </form>
+</div>
+<form action="#" th:action="@{/limits/add}" method="post" class="limits-container" th:object="${lim}">
+    <select required th:field="*{category}">
+        <option th:value="null">-- Не выбрано --</option>
+        <option th:each="type : ${categories}"
+                th:value="${type.getId()}"
+                th:text="${type.getDescription()}">...
+        </option>
+    </select>
+    <input type="number" step=0.01 min=0.0 th:field="*{limitAmount}"/>
+    <button class="back-button" type="submit">Сохранить</button>
+</form>
+</body>
+</html>

@@ -6,6 +6,8 @@ import org.springframework.format.annotation.NumberFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 
 @Entity
 @Table(name = "loan")
@@ -200,8 +202,14 @@ public class Loan {
         this.dateLastPay = dateLastPay;
     }
 
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
+    public Double getAmountWithPercents() {
+        var months = dateBegin.until(dateEnd, ChronoUnit.MONTHS);
+        return loanAmount * (1 + interestRate * months / 12.0d);
+    }
+
     public String getLoanInfo() {
-        return String.format("%s (%.0f)", description, loanAmount);
+        return String.format("%s (%.0f, погашено %.0f)", description, loanAmount, balance);
     }
 
     @Override

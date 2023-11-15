@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Лимиты расходов</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
+</head>
+<body>
+<div class="header">
+    <div class="item-container">
+        <h2>Финансовый калькулятор</h2>
+        <h3>Лимиты расходов</h3>
+    </div>
+    <form th:action="@{/home}" method="get">
+        <input class="back-button" type="submit" value="Назад" />
+    </form>
+</div>
+
+<div class="limits-container" th:each="l : ${limitMap}">
+    <span th:utext="${l.category.description}">category</span>
+    <span th:utext="${l.limit == null} ? '-' : ${{l.limit.limitAmount}}">limit amount</span>
+    <a th:if="${l.limit != null}" th:href="@{/limits/edit/} + ${l.limit.id}">Изменить</a>
+    <a th:if="${l.limit == null}" th:href="@{/limits/add/} + ${l.category.id}">Добавить</a>
+</div>
+</body>
+</html>

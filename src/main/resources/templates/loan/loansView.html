@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Кредиты</title>
+    <link rel="stylesheet" href="../../static/style/ui.css" th:href="@{/style/ui.css}" />
 </head>
 <body>
-<form action="#" th:action="@{/home}" method="get">
-    <button>Назад</button>
-</form>
+<div class="header">
+    <div class="item-container">
+        <h2>Финансовый калькулятор</h2>
+        <h3>Кредиты</h3>
+    </div>
+    <form th:action="@{/home}" method="get">
+        <input class="back-button" type="submit" value="Назад" />
+    </form>
+</div>
 
-<h3>Кредиты</h3>
 <p th:if="${loans.isEmpty()}">Нет кредитов</p>
 <table th:unless="${loans.isEmpty()}">
     <thead>
@@ -17,11 +23,12 @@
         <th>Описание</th>
         <th>Сумма кредита</th>
         <th>Годовая ставка</th>
-        <th>Аннуитетный платеж</th>
+        <th>С процентами</th>
+        <th>Платеж</th>
         <th>Открыт</th>
         <th>Выплачено</th>
         <th>Сумма на текущий период</th>
-        <th>Последняя выплата</th>
+        <th>Последний платеж</th>
         <th>Ожидаемая дата закрытия</th>
     </tr>
     </thead>
@@ -30,7 +37,8 @@
         <td th:utext="${l.getDescription()}">...</td>
         <td th:utext="${{l.getLoanAmount()}}">...</td>
         <td th:utext="${{l.getInterestRate()}}">...</td>
-        <td th:utext="#{|bool.${l.isAnnuity()}|}">...</td>
+        <td th:utext="${{l.getAmountWithPercents()}}">...</td>
+        <td th:utext="${l.isAnnuity} ? 'Аннуитетный' : 'Дифференцированный'">...</td>
         <td th:utext="${{l.getDateBegin()}}">...</td>
         <td th:utext="${{l.getBalance()}}">...</td>
         <td th:utext="${{l.getCurrentPayment()}}">...</td>

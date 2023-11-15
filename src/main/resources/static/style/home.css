@@ -1,0 +1,91 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: #b8cbf2;
+}
+
+.header {
+    width: 100vw;
+    height: 60px;
+    background-color: #346eeb;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+.header h2 {
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.header a, div {
+    font-family: 'Segoe UI';
+    font-weight: bold;
+}
+
+.header a { 
+    text-decoration: none;
+    color: #b8cbf2;
+}
+
+.header a:hover {
+    color: #dce2ed;
+}
+
+.profile-container {
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.logout-button {
+    width: 80px;
+    height: 25px;
+    background-color: #678fe5;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    font-family: 'Segoe UI';
+    font-weight: bold; 
+    font-size: 0.8em;
+}
+
+.logout-button:hover {
+    background-color: #86a2df;
+}
+
+.nav-content {
+    width: 100vw;
+    height: auto;
+    padding: 20px 0 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation {
+    display: grid;
+    grid-template-columns: 500px 500px;
+    grid-row-gap: 10px;
+}
+
+.navigation a {
+    width: 400px;
+    height: 200px;
+    background-color: #346eeb;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.navigation a:hover { 
+    color: rgb(202, 203, 221);
+}

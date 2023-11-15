@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Домашняя страница</title>
+    <link rel="stylesheet" href="../static/style/home.css" th:href="@{/style/home.css}" />
 </head>
+
 <body>
-<nav>
-    <a href="/history">История</a> | <a href="/loans">Кредиты</a> | <a href="/goals">Цели</a> | <a href="/user/all">Список пользователей</a>
-</nav>
-<div>
-    <p>Добро пожаловать, <span th:text="${username}">...</span>!</p>
-    <a href="/user/edit">Редактировать профиль</a>
-</div>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Выйти"/>
-</form>
+    <div class="header">
+        <h2>Финансовый калькулятор</h2>
+        <div class="profile-container">
+            <div>Вы вошли как <a href="/user/edit" th:text="${username}">username</a></div>
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-button" type="submit" value="Выйти" />
+            </form>
+        </div>
+    </div>
+    <div class="nav-content">
+        <nav class="navigation">
+            <a href="/history">История</a>
+            <a href="/loans">Кредиты</a>
+            <a href="/goals">Цели</a>
+            <a href="/deposits">Вклады</a>
+            <a href="/user/all">Список пользователей</a>
+            <a href="/limits">Лимиты расходов</a>
+        </nav>
+    </div>
+
 </body>
+
 </html>

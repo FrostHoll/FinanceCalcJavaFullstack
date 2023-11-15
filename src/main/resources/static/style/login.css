@@ -1,0 +1,93 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: #9dadcf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal {
+    width: 400px;
+    height: 320px;
+    background-color: #346eeb;
+    border-radius: 30px;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal a {
+    color: white;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+h1 {
+    color: white;
+    font-family: 'Segoe UI';
+    font-size:x-large;
+}
+
+.input-box {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+}
+
+.login-form {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.login-form label {
+    color: white;
+    font-family: 'Segoe UI';
+}
+
+.login-form div {
+    padding: 5px 5px;
+}
+
+.button-login {
+    margin-top: 10px;
+    width: 200px;
+    height: 25px;
+    background-color: #678fe5;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    font-family: 'Segoe UI'; 
+    font-size: 0.8em;
+}
+
+.button-login:hover {
+    background-color: #8aa7e5;
+}
+
+.info-modal {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+.info-modal div {
+    width: 250px;
+    height: 30px;
+    background-color: #346eeb;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 0.8em;
+}
