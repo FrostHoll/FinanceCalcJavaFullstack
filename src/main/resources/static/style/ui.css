@@ -1,5 +1,5 @@
 body {
-    width: 100vw;
+    width:max-content;
     height: 100vh;
     margin: 0;
     background-color: #b8cbf2;
@@ -90,7 +90,7 @@ body {
 .form-container {
     width: 50vw;
     margin: 10px;
-    background-color: #6081c5;
+    background-color: #6e85b3;
     border-radius: 10px;
     display: flex;
     justify-content: space-around;
@@ -105,12 +105,12 @@ body {
 
 .table-container {
     margin: 10px 10px 10px 10px;
-    width: 100vw;
 }
 
 .submit-button {
     width: 180px;
-    background-color: #678fe5;
+    background-color: #83a3e8;
+    padding: 2px 5px 2px 5px;
     border: none;
     border-radius: 5px;
     font-family: 'Segoe UI';
@@ -122,12 +122,32 @@ body {
     background-color: #7696dc;
 }
 
+.input-box {
+    width: 200px;
+    height: 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.select-option * {
+    width: 200px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.message {
+    font-family: 'Segoe UI';
+    color: white;
+}
+
 .table {
-	width: 80%;
+    border-spacing: 0;
+	width: 100%;
 	border: none;
 	margin-bottom: 20px;
     font-family: 'Segoe UI';
-    
+    margin-top: 20px;
 }
 .table thead th {
 	font-weight: bold;

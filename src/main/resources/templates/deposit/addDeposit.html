@@ -19,30 +19,30 @@
     </div>
     <form class="form-container" action="#" th:action="@{/deposits/add}" th:object="${deposit}" method="post">
         <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
-            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+            <li class="message" th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
         </ul>
 
         <p>Описание: <br>
-            <input type="text" th:field="*{description}" />
+            <input class="input-box" type="text" th:field="*{description}" />
         </p>
         <p>Изначальная сумма вклада: <br>
-            <input type="number" step="0.01" required min=0.01 th:field="*{depositAmount}" th:errorclass="fieldError" />
+            <input class="input-box" type="number" step="0.01" required min=0.01 th:field="*{depositAmount}" th:errorclass="fieldError" />
         </p>
         <p>Годовая ставка, %: <br>
-            <input type="number" step="0.01" required min=1.0 max=100.0 th:field="*{interestRate}"
+            <input class="input-box" type="number" step="0.01" required min=1.0 max=100.0 th:field="*{interestRate}"
                 th:errorclass="fieldError">
         </p>
         <p>Дата открытия вклада: <br>
-            <input type="date" required th:field="*{dateBegin}" th:errorclass="fieldError">
+            <input class="input-box" type="date" required th:field="*{dateBegin}" th:errorclass="fieldError">
         </p>
         <p>Проценты со вклада: <br>
-            <input type="number" step="0.01" min=0.0 th:field="*{revenue}" th:errorclass="fieldError">
+            <input class="input-box" type="number" step="0.01" min=0.0 th:field="*{revenue}" th:errorclass="fieldError">
         </p>
         <p>Неснижаемый остаток: <br>
-            <input type="number" required step="0.01" min=0.01 th:field="*{minBalance}" th:errorclass="fieldError">
+            <input class="input-box" type="number" required step="0.01" min=0.01 th:field="*{minBalance}" th:errorclass="fieldError">
         </p>
         <p>
-            <input class="submit-button" type="submit" value="Сохранить">
+            <input style="width: 200px;" class="submit-button" type="submit" value="Сохранить">
         </p>
     </form>
 </body>
