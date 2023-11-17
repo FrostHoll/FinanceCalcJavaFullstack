@@ -136,6 +136,6 @@ public class Goal {
     }
 
     public String getGoalInfo() {
-        return String.format("%s (%.0f/%.0f)", goalName, currentAmount, goalAmount);
+        return String.format("%s (%.0f/%.0f руб.)", goalName, currentAmount, goalAmount);
     }
 }

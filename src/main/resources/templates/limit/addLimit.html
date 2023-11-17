@@ -16,14 +16,14 @@
     </form>
 </div>
 <form action="#" th:action="@{/limits/add}" method="post" class="limits-container" th:object="${lim}">
-    <select required th:field="*{category}">
-        <option th:value="null">-- Не выбрано --</option>
-        <option th:each="type : ${categories}"
+    <select class="input-box" required th:field="*{category}">
+        <option class="select-option" th:value="null">-- Не выбрано --</option>
+        <option class="select-option" th:each="type : ${categories}"
                 th:value="${type.getId()}"
                 th:text="${type.getDescription()}">...
         </option>
     </select>
-    <input type="number" step=0.01 min=0.0 th:field="*{limitAmount}"/>
+    <input class="input-box" type="number" step=0.01 min=0.0 th:field="*{limitAmount}"/>
     <button class="back-button" type="submit">Сохранить</button>
 </form>
 </body>

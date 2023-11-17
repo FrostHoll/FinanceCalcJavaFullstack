@@ -43,9 +43,9 @@
         </p>
         <div hidden id="categorySelector">
             <p>Категория: <br>
-                <select th:field="*{category}">
-                    <option th:value="null">-- Не выбрано --</option>
-                    <option th:each="type : ${categories}" th:value="${type.getId()}"
+                <select class="input-box" th:field="*{category}">
+                    <option class="select-option" th:value="null">-- Не выбрано --</option>
+                    <option class="select-option" th:each="type : ${categories}" th:value="${type.getId()}"
                         th:text="${type.getDescription()}">...
                     </option>
                 </select>
@@ -53,27 +53,27 @@
         </div>
         <div hidden id="loanSelector">
             <p>Кредит: <br>
-                <select th:field="*{loan}">
-                    <option th:value="null">-- Не выбрано --</option>
-                    <option th:each="type : ${loans}" th:value="${type.getId()}" th:text="${type.getLoanInfo()}">...
+                <select class="input-box" th:field="*{loan}">
+                    <option class="select-option" th:value="null">-- Не выбрано --</option>
+                    <option class="select-option" th:each="type : ${loans}" th:value="${type.getId()}" th:text="${type.getLoanInfo()}">...
                     </option>
                 </select>
             </p>
         </div>
         <div hidden id="goalSelector">
             <p>Цель: <br>
-                <select th:field="*{goal}">
-                    <option th:value="null">-- Не выбрано --</option>
-                    <option th:each="type : ${goals}" th:value="${type.getId()}" th:text="${type.getGoalInfo()}">...
+                <select class="input-box" th:field="*{goal}">
+                    <option class="select-option" th:value="null">-- Не выбрано --</option>
+                    <option class="select-option" th:each="type : ${goals}" th:value="${type.getId()}" th:text="${type.getGoalInfo()}">...
                     </option>
                 </select>
             </p>
         </div>
         <div hidden id="depositSelector">
             <p>Снять с вклада: <br>
-                <select th:field="*{deposit}">
-                    <option th:value="null">-- Не выбрано --</option>
-                    <option th:each="type : ${deposits}" th:value="${type.getId()}" th:text="${type.getDepositInfo()}">
+                <select class="input-box" th:field="*{deposit}">
+                    <option class="select-option" th:value="null">-- Не выбрано --</option>
+                    <option class="select-option" th:each="type : ${deposits}" th:value="${type.getId()}" th:text="${type.getDepositInfo()}">
                         ...
                     </option>
                 </select>
@@ -83,7 +83,7 @@
             <input class="input-box" type="datetime-local" required th:field="*{recordDate}" th:errorclass="fieldError">
         </p>
         <p>
-            <input class="submit-button" type="submit" value="Сохранить">
+            <input style="width:200px;" class="submit-button" type="submit" value="Сохранить">
         </p>
     </form>
 </body>

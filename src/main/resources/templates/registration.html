@@ -8,7 +8,9 @@
 </head>
 
 <body>
-    <div class="info-modal" th:text="${message}"></div>
+    <div class="info-modal">
+        <div th:if="${message != null}" th:text="${message}">...</div>
+    </div>
     <div class="login-modal">
         <form class="login-form" th:action="@{/registration}" method="post">
             <div><label for="login">Логин:</label></div>
@@ -24,6 +26,7 @@
                     Зарегистрироваться
                 </button>
             </div>
+            <div><a style="font-size:0.8em;" href="/login">Войти</a></div>
         </form>
     </div>
 </body>

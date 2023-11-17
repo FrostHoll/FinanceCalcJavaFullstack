@@ -10,7 +10,7 @@ body {
 
 .login-modal {
     width: 400px;
-    height: 320px;
+    height: 340px;
     background-color: #346eeb;
     border-radius: 30px;    
     display: flex;

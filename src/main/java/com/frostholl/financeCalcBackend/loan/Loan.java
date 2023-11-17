@@ -40,7 +40,7 @@ public class Loan {
     private LocalDate dateEnd;
 
     @Column(name = "current_payment")
-    private Double currentPayment;
+    private Double currentPayment = 0d;
 
     @Column(name = "date_last_pay")
     private LocalDateTime dateLastPay;
@@ -209,7 +209,9 @@ public class Loan {
     }
 
     public String getLoanInfo() {
-        return String.format("%s (%.0f, погашено %.0f)", description, loanAmount, balance);
+        if (currentPayment > 0)
+            return String.format("%s (%.0f руб., тек. период - %.0f руб.)", description, getAmountWithPercents(), currentPayment);
+        return String.format("%s (%.0f руб., погашено %.0f руб.)", description, getAmountWithPercents(), balance);
     }
 
     @Override

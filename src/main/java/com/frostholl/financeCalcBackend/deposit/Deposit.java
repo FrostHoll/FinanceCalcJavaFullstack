@@ -158,6 +158,6 @@ public class Deposit {
     }
 
     public String getDepositInfo() {
-        return String.format("%s (%.0f, доступно %.0f)", description, depositAmount, depositAmount + revenue - minBalance);
+        return String.format("%s (%.0f руб., доступно %.0f руб.)", description, depositAmount, depositAmount + revenue - minBalance);
     }
 }

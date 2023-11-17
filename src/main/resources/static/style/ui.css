@@ -79,12 +79,15 @@ body {
 
 .limits-container a {
     width: 120px;
+    background-color: #83a3e8;
+    border-radius: 5px;
+    text-align: center;
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .limits-container a:hover {
-    color: rgb(195, 190, 190);
+    color: rgb(162, 179, 249);
 }
 
 .form-container {
@@ -130,7 +133,7 @@ body {
     border-radius: 5px;
 }
 
-.select-option * {
+.select-option {
     width: 200px;
     height: 20px;
     border-radius: 5px;

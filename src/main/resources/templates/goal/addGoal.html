@@ -20,27 +20,27 @@
 
     <form class="form-container" action="#" th:action="@{/goals/add}" th:object="${goal}" method="post">
         <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
-            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+            <li class="message" th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
         </ul>
 
         <p>Описание: <br>
-            <input type="text" th:field="*{goalName}" />
+            <input class="input-box" type="text" th:field="*{goalName}" />
         </p>
         <p>Сумма цели: <br>
-            <input type="number" step="0.01" min=0.01 th:field="*{goalAmount}" th:errorclass="fieldError" />
+            <input class="input-box"  type="number" step="0.01" min=0.01 th:field="*{goalAmount}" th:errorclass="fieldError" />
         </p>
         <p>Уже собрано: <br>
-            <input type="number" step="0.01" min=0.0 th:field="*{currentAmount}" th:errorclass="fieldError">
+            <input class="input-box"  type="number" step="0.01" min=0.0 th:field="*{currentAmount}" th:errorclass="fieldError">
         </p>
         <p>Дата последнего откладывания: <br>
-            <input type="datetime-local" th:field="*{dateLastPay}" th:errorclass="fieldError">
+            <input class="input-box"  type="datetime-local" th:field="*{dateLastPay}" th:errorclass="fieldError">
         </p>
         <!--
         <p>Установить минимальное отложение в месяц: <br>
             <input type="number" step="0.01" min=0.0 th:field="*{minPay}" th:errorclass="fieldError">
         </p>-->
         <p>
-            <input class="submit-button" type="submit" value="Сохранить">
+            <input style="width:200px;" class="submit-button" type="submit" value="Сохранить">
         </p>
     </form>
 </body>
