@@ -144,6 +144,17 @@ body {
     color: white;
 }
 
+.link {
+    font-family: 'Segoe UI';
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    color: #7696dc;
+}
+
 .table {
     border-spacing: 0;
 	width: 100%;
