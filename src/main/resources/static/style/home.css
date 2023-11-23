@@ -73,7 +73,7 @@ body {
 
 .navigation a {
     width: 350px;
-    height: 150px;
+    height: 100px;
     background-color: #346eeb;
     border-radius: 30px;
     display: flex;
@@ -88,4 +88,9 @@ body {
 
 .navigation a:hover { 
     color: rgb(202, 203, 221);
+}
+
+#chart {
+    width: 100%;
+    height: 450px;
 }

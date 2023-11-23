@@ -23,4 +23,8 @@ public class DepositService {
         depositRepository.save(deposit);
     }
 
+    public void deleteDeposit(Deposit deposit) {
+        depositRepository.delete(deposit);
+    }
+
 }

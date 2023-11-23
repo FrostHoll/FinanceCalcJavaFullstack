@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Objects;
+
 @Controller
 @RequestMapping("/loans")
 public class LoansController {
@@ -25,6 +27,15 @@ public class LoansController {
         var loans = loanService.getLoansByUser(user);
         model.addAttribute("loans", loans);
         return "loan/loansView";
+    }
+
+    @GetMapping("/delete/{loan}")
+    public String deleteLoan(@AuthenticationPrincipal User user,
+                               Loan loan) {
+        if (!Objects.equals(loan.getUser().getId(), user.getId()))
+            return "redirect:/loans";
+        loanService.deleteLoan(loan);
+        return "redirect:/loans";
     }
 
     @GetMapping("/add")

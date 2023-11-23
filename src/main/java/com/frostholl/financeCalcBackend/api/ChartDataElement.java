@@ -1,20 +1,20 @@
 package com.frostholl.financeCalcBackend.api;
 
-class ChartDataElement {
-    private String description;
+public class ChartDataElement {
+    private String desc;
     private Double sum;
 
-    public ChartDataElement(String description, Double sum) {
-        this.description = description;
+    public ChartDataElement(String desc, Double sum) {
+        this.desc = desc;
         this.sum = sum;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public Double getSum() {
@@ -28,7 +28,7 @@ class ChartDataElement {
     @Override
     public String toString() {
         return "ChartDataElement{" +
-                "description='" + description + '\'' +
+                "description='" + desc + '\'' +
                 ", sum=" + sum +
                 '}';
     }

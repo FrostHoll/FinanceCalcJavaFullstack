@@ -43,7 +43,7 @@
         </p>
         <div hidden id="categorySelector">
             <p>Категория: <br>
-                <select class="input-box" th:field="*{category}">
+                <select class="input-box" style="width:fit-content;" th:field="*{category}">
                     <option class="select-option" th:value="null">-- Не выбрано --</option>
                     <option class="select-option" th:each="type : ${categories}" th:value="${type.getId()}"
                         th:text="${type.getDescription()}">...
@@ -53,7 +53,7 @@
         </div>
         <div hidden id="loanSelector">
             <p>Кредит: <br>
-                <select class="input-box" th:field="*{loan}">
+                <select class="input-box" style="width:fit-content;" th:field="*{loan}">
                     <option class="select-option" th:value="null">-- Не выбрано --</option>
                     <option class="select-option" th:each="type : ${loans}" th:value="${type.getId()}" th:text="${type.getLoanInfo()}">...
                     </option>
@@ -62,7 +62,7 @@
         </div>
         <div hidden id="goalSelector">
             <p>Цель: <br>
-                <select class="input-box" th:field="*{goal}">
+                <select class="input-box" style="width:fit-content;" th:field="*{goal}">
                     <option class="select-option" th:value="null">-- Не выбрано --</option>
                     <option class="select-option" th:each="type : ${goals}" th:value="${type.getId()}" th:text="${type.getGoalInfo()}">...
                     </option>
@@ -71,7 +71,7 @@
         </div>
         <div hidden id="depositSelector">
             <p>Снять с вклада: <br>
-                <select class="input-box" th:field="*{deposit}">
+                <select class="input-box" style="width:fit-content;" th:field="*{deposit}">
                     <option class="select-option" th:value="null">-- Не выбрано --</option>
                     <option class="select-option" th:each="type : ${deposits}" th:value="${type.getId()}" th:text="${type.getDepositInfo()}">
                         ...

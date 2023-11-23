@@ -2,13 +2,21 @@ package com.frostholl.financeCalcBackend.goal;
 
 import com.frostholl.financeCalcBackend.user.User;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.NumberFormat;
+import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 
+import javax.sql.DataSource;
+import java.beans.BeanProperty;
+import java.sql.Types;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Entity
 @Table(name = "goal")
 public class Goal {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "goal_id")
@@ -120,6 +128,20 @@ public class Goal {
 
     public void setMinPay(Double minPay) {
         this.minPay = minPay;
+    }
+
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
+    public Double getLeft(DataSource dataSource) {
+        SimpleJdbcCall call = new SimpleJdbcCall(dataSource)
+                .withFunctionName("goal_left")
+                .declareParameters(new SqlParameter("goalid", Types.INTEGER));
+        Map<String, Object> m = call.execute(id);
+        return (Double)m.get("goal_left");
+    }
+
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
+    public Double getLeft() {
+        return goalAmount - currentAmount;
     }
 
     @Override

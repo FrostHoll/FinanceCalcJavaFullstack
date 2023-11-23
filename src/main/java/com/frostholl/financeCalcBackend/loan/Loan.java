@@ -210,7 +210,7 @@ public class Loan {
 
     public String getLoanInfo() {
         if (currentPayment > 0)
-            return String.format("%s (%.0f руб., тек. период - %.0f руб.)", description, getAmountWithPercents(), currentPayment);
+            return String.format("%s (%.0f руб., тек. период - %.2f руб.)", description, getAmountWithPercents(), currentPayment);
         return String.format("%s (%.0f руб., погашено %.0f руб.)", description, getAmountWithPercents(), balance);
     }
 

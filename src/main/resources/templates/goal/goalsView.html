@@ -26,8 +26,9 @@
                     <th>Описание</th>
                     <th>Сумма цели</th>
                     <th>Собранная сумма</th>
+                    <th>Осталось</th>
                     <th>Дата последнего откладывания</th>
-                    <!--        <th>Установленное минимальное отложение</th>-->
+                    <th>Действие</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,8 +36,11 @@
                     <td th:utext="${g.getGoalName()}">...</td>
                     <td th:utext="${{g.getGoalAmount()}}">...</td>
                     <td th:utext="${{g.getCurrentAmount()}}">...</td>
+                    <td th:utext="${{g.getLeft()}}">...</td>
                     <td th:utext="${{g.getDateLastPay()}}">...</td>
-                    <!--        <td th:utext="${{g.getMinPay()}}">...</td>-->
+                    <td>
+                        <a class="submit-button" style="width: 80px;" th:href="@{/goals/delete/}+${g.id}">Удалить</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

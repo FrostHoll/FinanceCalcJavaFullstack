@@ -21,4 +21,8 @@ public class LoanService {
     public void addNewLoan(Loan loan) {
         loanRepository.save(loan);
     }
+
+    public void deleteLoan(Loan loan) {
+        loanRepository.delete(loan);
+    }
 }

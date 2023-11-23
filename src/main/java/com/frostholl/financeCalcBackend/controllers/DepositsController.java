@@ -2,6 +2,7 @@ package com.frostholl.financeCalcBackend.controllers;
 
 import com.frostholl.financeCalcBackend.deposit.Deposit;
 import com.frostholl.financeCalcBackend.deposit.DepositService;
+import com.frostholl.financeCalcBackend.loan.Loan;
 import com.frostholl.financeCalcBackend.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/deposits")
@@ -35,6 +38,15 @@ public class DepositsController {
     public String showAddDepositPage(Model model) {
         model.addAttribute("deposit", new Deposit());
         return "deposit/addDeposit";
+    }
+
+    @GetMapping("/delete/{deposit}")
+    public String deleteDeposit(@AuthenticationPrincipal User user,
+                               Deposit deposit) {
+        if (!Objects.equals(deposit.getUser().getId(), user.getId()))
+            return "redirect:/deposits";
+        depositService.deleteDeposit(deposit);
+        return "redirect:/deposits";
     }
 
     @PostMapping("/add")

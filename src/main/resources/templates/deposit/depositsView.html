@@ -29,6 +29,7 @@
                     <th>Дата открытия вклада</th>
                     <th>Проценты</th>
                     <th>Неснижаемый остаток</th>
+                    <th>Действие</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +40,9 @@
                     <td th:utext="${{d.getDateBegin()}}">...</td>
                     <td th:utext="${{d.getRevenue()}}">...</td>
                     <td th:utext="${{d.getMinBalance()}}">...</td>
+                    <td>
+                        <a class="submit-button" style="width: 80px;" th:href="@{/deposits/delete/}+${d.id}">Удалить</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

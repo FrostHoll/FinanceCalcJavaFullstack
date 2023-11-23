@@ -23,4 +23,8 @@ public class RecordService {
     public void addNewRecord(Record record) {
         recordRepository.save(record);
     }
+
+    public void deleteRecord(Record record) {
+        recordRepository.delete(record);
+    }
 }

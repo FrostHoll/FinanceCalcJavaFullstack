@@ -28,7 +28,7 @@
                     <th>Тип</th>
                     <th>Информация</th>
                     <th>Дата</th>
-<!--                    <th>Действие</th>-->
+                    <th>Действие</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +38,9 @@
                     <td th:utext="#{${'record.type.' + rec.getRecordType()}}">...</td>
                     <td th:utext="${rec.getRecordTypeInfo()}">...</td>
                     <td th:utext="${{rec.getRecordDate()}}">...</td>
-<!--                    <td><a class="link" href="">Удалить</a></td>-->
+                    <td>
+                        <a class="submit-button" style="width: 80px;" th:href="@{/history/delete/}+${rec.id}">Удалить</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

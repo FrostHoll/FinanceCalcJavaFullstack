@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/history")
@@ -70,6 +71,15 @@ public class HistoryController {
         resetRecordModel(model, user);
         model.addAttribute("record", new Record());
         return "history/addRecord";
+    }
+
+    @GetMapping("/delete/{record}")
+    public String deleteRecord(@AuthenticationPrincipal User user,
+                               Record record) {
+        if (!Objects.equals(record.getUser().getId(), user.getId()))
+            return "redirect:/history";
+        recordService.deleteRecord(record);
+        return "redirect:/history";
     }
 
     @PostMapping("/add")
