@@ -42,7 +42,7 @@ public class RequestsController {
     private RecordService recordService;
 
     @PostMapping("/chartData")
-    public ResponseEntity<List<ChartDataElement>> test(@AuthenticationPrincipal User user) {
+    public ResponseEntity<List<ChartDataElement>> getChartData(@AuthenticationPrincipal User user) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.setResultsMapCaseInsensitive(true);
         SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate)

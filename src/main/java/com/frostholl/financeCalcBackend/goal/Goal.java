@@ -139,11 +139,6 @@ public class Goal {
         return (Double)m.get("goal_left");
     }
 
-    @NumberFormat(style = NumberFormat.Style.CURRENCY)
-    public Double getLeft() {
-        return goalAmount - currentAmount;
-    }
-
     @Override
     public String toString() {
         return "Goal{" +
@@ -159,5 +154,10 @@ public class Goal {
 
     public String getGoalInfo() {
         return String.format("%s (%.0f/%.0f руб.)", goalName, currentAmount, goalAmount);
+    }
+
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
+    public Double getLeft() {
+        return goalAmount - currentAmount;
     }
 }

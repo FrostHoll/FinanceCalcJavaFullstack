@@ -4,6 +4,7 @@ import com.frostholl.financeCalcBackend.category.Category;
 import com.frostholl.financeCalcBackend.category.CategoryService;
 import com.frostholl.financeCalcBackend.expensesLimit.ExpensesLimit;
 import com.frostholl.financeCalcBackend.expensesLimit.ExpensesLimitService;
+import com.frostholl.financeCalcBackend.expensesLimit.LimitMapElement;
 import com.frostholl.financeCalcBackend.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -67,40 +68,5 @@ public class LimitsController {
         limit.setUser(user);
         limitService.addOrUpdateLimit(user, limit);
         return "redirect:/limits";
-    }
-}
-
-class LimitMapElement {
-    private ExpensesLimit limit;
-
-    private Category category;
-
-    public LimitMapElement(ExpensesLimit limit, Category category) {
-        this.limit = limit;
-        this.category = category;
-    }
-
-    public ExpensesLimit getLimit() {
-        return limit;
-    }
-
-    public void setLimit(ExpensesLimit limit) {
-        this.limit = limit;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    @Override
-    public String toString() {
-        return "LimitMapElement{" +
-                "limit=" + limit +
-                ", category=" + category +
-                '}';
     }
 }
